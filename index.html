@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ELEGANCE — Cosmetics Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Perfecto font -->
+  <link href="https://fonts.cdnfonts.com/css/perfecto" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #fff, #f5f5f5);
+      color: #222;
+      overflow-x: hidden;
+    }
+    header {
+      background: #000;
+      color: #fff;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .brand {
+      font-family: 'Perfecto', sans-serif;
+      font-size: 36px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #000, #555);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav div {
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    nav div:hover {
+      background: #333;
+    }
+    .cart-btn {
+      background: #c00000;
+      padding: 6px 14px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      margin: 20px auto;
+      text-align: center;
+    }
+    .search-bar input {
+      width: 60%;
+      padding: 12px;
+      border: 2px solid #000;
+      border-radius: 25px;
+      font-size: 16px;
+    }
+
+    /* Slider */
+    .slider {
+      margin: 20px auto;
+      width: 95%;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+    .slides {
+      display: flex;
+      animation: scroll 20s linear infinite;
+    }
+    .slides img {
+      width: 300px;
+      height: 160px;
+      object-fit: cover;
+      margin-right: 12px;
+      border-radius: 10px;
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* Product Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+    .info {
+      padding: 12px;
+    }
+    .info h3 { margin: 0; font-size: 16px; color: #111; }
+    .price { color: #c00000; font-weight: bold; margin: 6px 0; }
+    .offer { font-size: 13px; color: #16a34a; }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      color: #000;
+    }
+    .modal img {
+      width: 100%;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+    .close {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      background: #000;
+      color: #fff;
+      padding: 20px;
+      font-size: 14px;
+    }
+    .footer-links button {
+      margin: 0 8px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #fff;
+    }
+    .order { background: #444; }
+    .payment { background: #16a34a; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="brand">ELEGANCE</div>
+  <nav>
+    <div>Home</div>
+    <div>Menu</div>
+    <div>Contact</div>
+    <div>Sales</div>
+    <div>Optional</div>
+    <div class="cart-btn" onclick="openCart()">MyCart</div>
+  </nav>
+</header>
+
+<!-- Advertisement Slider -->
+<div class="slider">
+  <div class="slides">
+    <img src="https://source.unsplash.com/600x300/?cosmetics" alt="">
+    <img src="https://source.unsplash.com/601x300/?makeup" alt="">
+    <img src="https://source.unsplash.com/602x300/?beauty-products" alt="">
+    <img src="https://source.unsplash.com/603x300/?lipstick" alt="">
+    <img src="https://source.unsplash.com/604x300/?skincare" alt="">
+  </div>
+</div>
+
+<!-- Search -->
+<div class="search-bar">
+  <input type="text" placeholder="Search for cosmetics, brands, categories...">
+</div>
+
+<!-- Product Grid -->
+<main class="grid" id="productGrid"></main>
+
+<!-- Product Modal -->
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <div id="modalImages"></div>
+    <p id="modalPrice"></p>
+    <button class="order">Order Now</button>
+  </div>
+</div>
+
+<!-- Cart Modal -->
+<div class="modal" id="cartModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeCart()">&times;</span>
+    <h2>My Cart</h2>
+    <div id="cartItems"></div>
+    <h3>Payment Options</h3>
+    <ul>
+      <li><input type="radio" name="pay" checked> UPI</li>
+      <li><input type="radio" name="pay"> Credit Card</li>
+      <li><input type="radio" name="pay"> Cash on Delivery</li>
+    </ul>
+    <button class="payment">Proceed to Pay</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 ELEGANCE Cosmetics Store — Real Business Website</p>
+</footer>
+
+<script>
+  // -------- Generate 50 Products --------
+  const grid = document.getElementById("productGrid");
+  const cart = [];
+  for (let i=1; i<=50; i++) {
+    const card = document.createElement("div");
+    card.className = "card";
+    const imgUrl = `https://source.unsplash.com/400x500/?cosmetics,makeup,${i}`;
+    const price = 199 + Math.floor(Math.random()*2000);
+    const offer = 10 + Math.floor(Math.random()*40);
+    card.innerHTML = `
+      <img src="${imgUrl}" alt="Item ${i}">
+      <div class="info">
+        <h3>Cosmetic Item #${i}</h3>
+        <div class="price">₹${price} <span class="offer">${offer}% OFF</span></div>
+      </div>
+    `;
+    card.onclick = () => openModal(i, imgUrl, price, offer);
+    grid.appendChild(card);
+  }
+
+  // -------- Product Modal --------
+  function openModal(id, imgUrl, price, offer) {
+    document.getElementById("modalTitle").innerText = "Cosmetic Item #" + id;
+    document.getElementById("modalPrice").innerText = `₹${price} — ${offer}% OFF`;
+    document.getElementById("modalImages").innerHTML = `
+      <img src="${imgUrl}" alt="">
+      <img src="https://source.unsplash.com/401x500/?makeup,${id}" alt="">
+      <img src="https://source.unsplash.com/402x500/?beauty,${id}" alt="">
+    `;
+    document.getElementById("productModal").style.display = "flex";
+  }
+  function closeModal() {
+    document.getElementById("productModal").style.display = "none";
+  }
+
+  // -------- Cart Modal --------
+  function openCart() {
+    document.getElementById("cartModal").style.display = "flex";
+  }
+  function closeCart() {
+    document.getElementById("cartModal").style.display = "none";
+  }
+</script>
+</body>
+</html>
