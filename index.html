@@ -1,282 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ELEGANCE — Cosmetics Store</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Perfecto font -->
-  <link href="https://fonts.cdnfonts.com/css/perfecto" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #fff, #f5f5f5);
-      color: #222;
-      overflow-x: hidden;
-    }
-    header {
-      background: #000;
-      color: #fff;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .brand {
-      font-family: 'Perfecto', sans-serif;
-      font-size: 36px;
-      font-weight: bold;
-      background: linear-gradient(90deg, #000, #555);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-    nav div {
-      cursor: pointer;
-      padding: 6px 12px;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-    nav div:hover {
-      background: #333;
-    }
-    .cart-btn {
-      background: #c00000;
-      padding: 6px 14px;
-      border-radius: 6px;
-      color: #fff;
-      font-weight: bold;
-    }
-
-    /* Search Bar */
-    .search-bar {
-      margin: 20px auto;
-      text-align: center;
-    }
-    .search-bar input {
-      width: 60%;
-      padding: 12px;
-      border: 2px solid #000;
-      border-radius: 25px;
-      font-size: 16px;
-    }
-
-    /* Slider */
-    .slider {
-      margin: 20px auto;
-      width: 95%;
-      overflow: hidden;
-      border-radius: 14px;
-    }
-    .slides {
-      display: flex;
-      animation: scroll 20s linear infinite;
-    }
-    .slides img {
-      width: 300px;
-      height: 160px;
-      object-fit: cover;
-      margin-right: 12px;
-      border-radius: 10px;
-    }
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-100%); }
-    }
-
-    /* Product Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-    .card:hover { transform: translateY(-6px); }
-    .card img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-    }
-    .info {
-      padding: 12px;
-    }
-    .info h3 { margin: 0; font-size: 16px; color: #111; }
-    .price { color: #c00000; font-weight: bold; margin: 6px 0; }
-    .offer { font-size: 13px; color: #16a34a; }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-    .modal-content {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 600px;
-      color: #000;
-    }
-    .modal img {
-      width: 100%;
-      margin-bottom: 10px;
-      border-radius: 8px;
-    }
-    .close {
-      float: right;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      background: #000;
-      color: #fff;
-      padding: 20px;
-      font-size: 14px;
-    }
-    .footer-links button {
-      margin: 0 8px;
-      padding: 10px 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      color: #fff;
-    }
-    .order { background: #444; }
-    .payment { background: #16a34a; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEGANCE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        .header-name {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(to right, #000000, #4a4a4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .scrolling-ads {
+            animation: scroll-ads 20s linear infinite;
+        }
+        @keyframes scroll-ads {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .mycart-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        .mycart-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            transition: transform 0.2s;
+        }
+        .mycart-icon:hover {
+            transform: scale(1.1);
+        }
+        .product-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .order-button {
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .order-button:hover {
+            background-color: #000000;
+            transform: scale(1.05);
+        }
+        .modal {
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .modal.flex {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col items-center">
 
-<!-- Header -->
-<header>
-  <div class="brand">ELEGANCE</div>
-  <nav>
-    <div>Home</div>
-    <div>Menu</div>
-    <div>Contact</div>
-    <div>Sales</div>
-    <div>Optional</div>
-    <div class="cart-btn" onclick="openCart()">MyCart</div>
-  </nav>
-</header>
+    <!-- Header and Navigation -->
+    <header class="w-full bg-white bg-opacity-80 backdrop-blur-sm shadow-md py-4 sticky top-0 z-50">
+        <nav class="container mx-auto flex justify-between items-center px-6">
+            <div class="header-name">ELEGANCE</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-600 hover:text-gray-900 font-semibold transition-colors duration-200">Home</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 font-semibold transition-colors duration-200">Menu</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 font-semibold transition-colors duration-200">Sells</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 font-semibold transition-colors duration-200">Contact</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 font-semibold transition-colors duration-200">Optional</a>
+            </div>
+            <button class="mycart-btn text-gray-600 hover:text-gray-900" onclick="toggleCartModal()">
+                <svg class="mycart-icon" viewBox="0 0 24 24">
+                    <path d="M17 18a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2zm0-10l-3.236 9h-7.727l-2.091-5.275a1 1 0 0 1 .809-1.225l12-3a1 1 0 0 1 1.259 1.545l-1.636 2.055z"/>
+                    <path d="M9 20a2 2 0 0 1 2 2a2 2 0 0 1-2-2a2 2 0 0 1-2-2a2 2 0 0 1 2 2z"/>
+                </svg>
+            </button>
+        </nav>
+    </header>
 
-<!-- Advertisement Slider -->
-<div class="slider">
-  <div class="slides">
-    <img src="https://source.unsplash.com/600x300/?cosmetics" alt="">
-    <img src="https://source.unsplash.com/601x300/?makeup" alt="">
-    <img src="https://source.unsplash.com/602x300/?beauty-products" alt="">
-    <img src="https://source.unsplash.com/603x300/?lipstick" alt="">
-    <img src="https://source.unsplash.com/604x300/?skincare" alt="">
-  </div>
-</div>
+    <!-- Scrolling Advertisement Section -->
+    <div class="w-full bg-black text-white overflow-hidden py-2 my-4">
+        <div class="whitespace-nowrap scrolling-ads text-sm font-light">
+            <span class="inline-block mx-8">✨ New Summer Collection Out Now! ✨</span>
+            <span class="inline-block mx-8">🌸 Free shipping on all orders over $50! 🌸</span>
+            <span class="inline-block mx-8">💄 Shop our best-selling lipsticks! 💄</span>
+            <span class="inline-block mx-8">✨ New Summer Collection Out Now! ✨</span>
+            <span class="inline-block mx-8">🌸 Free shipping on all orders over $50! 🌸</span>
+            <span class="inline-block mx-8">💄 Shop our best-selling lipsticks! 💄</span>
+        </div>
+    </div>
 
-<!-- Search -->
-<div class="search-bar">
-  <input type="text" placeholder="Search for cosmetics, brands, categories...">
-</div>
+    <!-- Main Content Section -->
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <!-- Search Bar -->
+        <div class="flex justify-center mb-12">
+            <div class="relative w-full max-w-2xl">
+                <input type="text" placeholder="Search for products..." class="w-full px-6 py-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
+                <button class="absolute right-0 top-0 mt-3 mr-6 text-gray-500 hover:text-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8a4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        </div>
 
-<!-- Product Grid -->
-<main class="grid" id="productGrid"></main>
+        <!-- Product Grid -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- Product Card 1 -->
+            <div class="product-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 flex flex-col items-center text-center">
+                <img src="https://placehold.co/300x300/e9d5ff/8b5cf6?text=Lipstick" alt="Lipstick" class="w-full h-auto rounded-xl mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Radiant Matte Lipstick</h3>
+                <p class="text-sm text-gray-500 mb-4">Long-lasting color with a smooth finish.</p>
+                <div class="flex items-baseline mb-4">
+                    <span class="text-xl font-bold text-gray-900">$18.99</span>
+                    <span class="ml-2 text-sm text-red-500 font-semibold">20% Off!</span>
+                </div>
+                <button class="order-button bg-pink-500 text-white font-bold py-2 px-6 rounded-full w-full hover:bg-pink-600" onclick="addItemToCart('Radiant Matte Lipstick', 18.99)">Order Now</button>
+            </div>
 
-<!-- Product Modal -->
-<div class="modal" id="productModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h2 id="modalTitle"></h2>
-    <div id="modalImages"></div>
-    <p id="modalPrice"></p>
-    <button class="order">Order Now</button>
-  </div>
-</div>
+            <!-- Product Card 2 -->
+            <div class="product-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 flex flex-col items-center text-center">
+                <img src="https://placehold.co/300x300/fecaca/dc2626?text=Eyeshadow+Palette" alt="Eyeshadow Palette" class="w-full h-auto rounded-xl mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Smokey Eyes Palette</h3>
+                <p class="text-sm text-gray-500 mb-4">12 versatile shades for a perfect look.</p>
+                <div class="flex items-baseline mb-4">
+                    <span class="text-xl font-bold text-gray-900">$29.50</span>
+                </div>
+                <button class="order-button bg-pink-500 text-white font-bold py-2 px-6 rounded-full w-full hover:bg-pink-600" onclick="addItemToCart('Smokey Eyes Palette', 29.50)">Order Now</button>
+            </div>
 
-<!-- Cart Modal -->
-<div class="modal" id="cartModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeCart()">&times;</span>
-    <h2>My Cart</h2>
-    <div id="cartItems"></div>
-    <h3>Payment Options</h3>
-    <ul>
-      <li><input type="radio" name="pay" checked> UPI</li>
-      <li><input type="radio" name="pay"> Credit Card</li>
-      <li><input type="radio" name="pay"> Cash on Delivery</li>
-    </ul>
-    <button class="payment">Proceed to Pay</button>
-  </div>
-</div>
+            <!-- Product Card 3 -->
+            <div class="product-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 flex flex-col items-center text-center">
+                <img src="https://placehold.co/300x300/dbeafe/2563eb?text=Foundation" alt="Foundation" class="w-full h-auto rounded-xl mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Flawless Finish Foundation</h3>
+                <p class="text-sm text-gray-500 mb-4">Full coverage and lightweight feel.</p>
+                <div class="flex items-baseline mb-4">
+                    <span class="text-xl font-bold text-gray-900">$25.00</span>
+                    <span class="ml-2 text-sm text-red-500 font-semibold">10% Off!</span>
+                </div>
+                <button class="order-button bg-pink-500 text-white font-bold py-2 px-6 rounded-full w-full hover:bg-pink-600" onclick="addItemToCart('Flawless Finish Foundation', 25.00)">Order Now</button>
+            </div>
 
-<!-- Footer -->
-<footer>
-  <p>© 2025 ELEGANCE Cosmetics Store — Real Business Website</p>
-</footer>
+            <!-- Product Card 4 -->
+            <div class="product-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 flex flex-col items-center text-center">
+                <img src="https://placehold.co/300x300/ffedd5/f97316?text=Mascara" alt="Mascara" class="w-full h-auto rounded-xl mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Volume Lash Mascara</h3>
+                <p class="text-sm text-gray-500 mb-4">Get dramatic, voluminous lashes instantly.</p>
+                <div class="flex items-baseline mb-4">
+                    <span class="text-xl font-bold text-gray-900">$14.00</span>
+                </div>
+                <button class="order-button bg-pink-500 text-white font-bold py-2 px-6 rounded-full w-full hover:bg-pink-600" onclick="addItemToCart('Volume Lash Mascara', 14.00)">Order Now</button>
+            </div>
+            
+            <!-- More products can be added here following the same structure -->
 
-<script>
-  // -------- Generate 50 Products --------
-  const grid = document.getElementById("productGrid");
-  const cart = [];
-  for (let i=1; i<=50; i++) {
-    const card = document.createElement("div");
-    card.className = "card";
-    const imgUrl = `https://source.unsplash.com/400x500/?cosmetics,makeup,${i}`;
-    const price = 199 + Math.floor(Math.random()*2000);
-    const offer = 10 + Math.floor(Math.random()*40);
-    card.innerHTML = `
-      <img src="${imgUrl}" alt="Item ${i}">
-      <div class="info">
-        <h3>Cosmetic Item #${i}</h3>
-        <div class="price">₹${price} <span class="offer">${offer}% OFF</span></div>
-      </div>
-    `;
-    card.onclick = () => openModal(i, imgUrl, price, offer);
-    grid.appendChild(card);
-  }
+        </section>
+    </main>
 
-  // -------- Product Modal --------
-  function openModal(id, imgUrl, price, offer) {
-    document.getElementById("modalTitle").innerText = "Cosmetic Item #" + id;
-    document.getElementById("modalPrice").innerText = `₹${price} — ${offer}% OFF`;
-    document.getElementById("modalImages").innerHTML = `
-      <img src="${imgUrl}" alt="">
-      <img src="https://source.unsplash.com/401x500/?makeup,${id}" alt="">
-      <img src="https://source.unsplash.com/402x500/?beauty,${id}" alt="">
-    `;
-    document.getElementById("productModal").style.display = "flex";
-  }
-  function closeModal() {
-    document.getElementById("productModal").style.display = "none";
-  }
+    <!-- My Cart Modal -->
+    <div id="cart-modal" class="modal fixed inset-0 flex items-center justify-center p-4 bg-gray-900 bg-opacity-75 z-50 hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full shadow-2xl relative">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="toggleCartModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">My Cart</h2>
+            <div id="cart-items" class="space-y-4">
+                <!-- Cart items will be injected here by JavaScript -->
+            </div>
+            <div id="empty-cart-message" class="text-center text-gray-500 hidden">Your cart is empty.</div>
+            <div class="mt-8 pt-4 border-t border-gray-200">
+                <p class="text-xl font-bold text-gray-800">Total: <span id="cart-total">$0.00</span></p>
+                <div class="flex flex-col mt-6 space-y-4">
+                    <button class="bg-black text-white font-bold py-3 px-6 rounded-full hover:bg-gray-800" onclick="showPaymentModal()">Proceed to Payment</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  // -------- Cart Modal --------
-  function openCart() {
-    document.getElementById("cartModal").style.display = "flex";
-  }
-  function closeCart() {
-    document.getElementById("cartModal").style.display = "none";
-  }
-</script>
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal fixed inset-0 flex items-center justify-center p-4 bg-gray-900 bg-opacity-75 z-50 hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="hidePaymentModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Select Payment Method</h2>
+            <div class="space-y-4">
+                <button class="w-full bg-gray-100 text-gray-800 font-bold py-4 px-6 rounded-xl hover:bg-gray-200 transition-colors" onclick="processPayment('UPI')">
+                    UPI
+                </button>
+                <button class="w-full bg-gray-100 text-gray-800 font-bold py-4 px-6 rounded-xl hover:bg-gray-200 transition-colors" onclick="processPayment('Credit Card')">
+                    Credit Card
+                </button>
+                <button class="w-full bg-gray-100 text-gray-800 font-bold py-4 px-6 rounded-xl hover:bg-gray-200 transition-colors" onclick="processPayment('Cash on Delivery')">
+                    Cash on Delivery
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Box -->
+    <div id="message-box" class="fixed bottom-8 right-8 bg-black text-white px-6 py-4 rounded-xl shadow-lg transform transition-transform duration-300 -translate-y-full opacity-0 z-50">
+        <span id="message-text"></span>
+    </div>
+
+    <script>
+        let cart = [];
+
+        const cartModal = document.getElementById('cart-modal');
+        const paymentModal = document.getElementById('payment-modal');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalSpan = document.getElementById('cart-total');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const messageBox = document.getElementById('message-box');
+        const messageText = document.getElementById('message-text');
+
+        function toggleCartModal() {
+            cartModal.classList.toggle('hidden');
+            cartModal.classList.toggle('flex');
+            updateCartDisplay();
+        }
+
+        function showPaymentModal() {
+            hideMessageBox();
+            if (cart.length > 0) {
+                cartModal.classList.remove('flex');
+                cartModal.classList.add('hidden');
+                paymentModal.classList.remove('hidden');
+                paymentModal.classList.add('flex');
+            } else {
+                showMessage("Your cart is empty. Please add items first.", "bg-red-500");
+            }
+        }
+
+        function hidePaymentModal() {
+            paymentModal.classList.remove('flex');
+            paymentModal.classList.add('hidden');
+        }
+
+        function showMessage(text, bgColor = "bg-green-500") {
+            messageText.textContent = text;
+            messageBox.className = `fixed bottom-8 right-8 ${bgColor} text-white px-6 py-4 rounded-xl shadow-lg transform transition-transform duration-300 translate-y-0 opacity-100 z-50`;
+            setTimeout(() => {
+                hideMessageBox();
+            }, 3000);
+        }
+
+        function hideMessageBox() {
+            messageBox.classList.add('-translate-y-full', 'opacity-0');
+            messageBox.classList.remove('translate-y-0', 'opacity-100');
+        }
+        
+        function addItemToCart(name, price) {
+            hideMessageBox();
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            showMessage(`${name} added to cart!`);
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+            } else {
+                emptyCartMessage.classList.add('hidden');
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'flex justify-between items-center bg-gray-100 rounded-xl p-4';
+                    itemElement.innerHTML = `
+                        <p class="text-gray-700">${item.name} x ${item.quantity}</p>
+                        <p class="text-gray-900 font-bold">$${(item.price * item.quantity).toFixed(2)}</p>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                    total += item.price * item.quantity;
+                });
+            }
+            cartTotalSpan.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function processPayment(method) {
+            hidePaymentModal();
+            showMessage(`Payment method selected: ${method}. Thank you for your order!`, "bg-green-600");
+            cart = []; // Clear the cart after a successful order
+            updateCartDisplay();
+        }
+
+    </script>
 </body>
 </html>
